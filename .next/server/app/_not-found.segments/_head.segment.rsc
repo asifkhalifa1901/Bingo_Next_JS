@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[97367,["/_next/static/chunks/be5ac463f13f483d.js","/_next/static/chunks/d2be314c3ece3fbe.js","/_next/static/chunks/72de65e3c1bd9f7b.js"],"ViewportBoundary"]
+3:I[97367,["/_next/static/chunks/be5ac463f13f483d.js","/_next/static/chunks/d2be314c3ece3fbe.js","/_next/static/chunks/72de65e3c1bd9f7b.js"],"MetadataBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"47QSsCTj3Nieiqf1Zy-qH","rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"BingoCraft · Bingo Card Generator"}],["$","meta","1",{"name":"description","content":"Create beautiful, printable bingo cards from ready-made templates or your own ideas."}]]}]}]}],null]}],"loading":null,"isPartial":false}
