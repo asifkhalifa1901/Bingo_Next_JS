@@ -1,47 +1,152 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FormEvent, useState } from "react";
 import { Twitter, Instagram, Facebook, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { TemplateId } from "@/data/bingo-templates";
+
+function getRangeFromQuery(query: string): [number, number] | null {
+  const match = query.match(/(\d+)\s*-\s*(\d+)/);
+  if (!match) return null;
+  const start = parseInt(match[1], 10);
+  const end = parseInt(match[2], 10);
+  if (!Number.isFinite(start) || !Number.isFinite(end)) return null;
+  if (start >= end) return null;
+  return [start, end];
+}
+
+function detectTemplateFromQuery(query: string): TemplateId | null {
+  const q = query.toLowerCase();
+
+  if (q.includes("christmas") || q.includes("xmas")) {
+    return "christmas";
+  }
+  if (q.includes("holiday")) {
+    return "holiday-party";
+  }
+  if (q.includes("team") || q.includes("office") || q.includes("meeting")) {
+    return "team-meeting";
+  }
+  if (q.includes("kids") || q.includes("birthday") || q.includes("child")) {
+    return "kids-party";
+  }
+  if (q.includes("classroom") || q.includes("math") || q.includes("school")) {
+    return "classroom-math";
+  }
+  if (q.includes("movie") || q.includes("film") || q.includes("cinema")) {
+    return "movie-night";
+  }
+  if (q.includes("icebreaker") || q.includes("intro") || q.includes("meet")) {
+    return "icebreaker";
+  }
+
+  return null;
+}
 
 export default function LandingPage() {
+  const router = useRouter();
+  const [search, setSearch] = useState("");
+
+  const goToTemplate = (query: string) => {
+    const range = getRangeFromQuery(query);
+    if (range) {
+      const [start, end] = range;
+      router.push(`/generator?mode=range&start=${start}&end=${end}`);
+      return;
+    }
+
+    const templateId = detectTemplateFromQuery(query);
+    if (templateId) {
+      router.push(`/generator?template=${templateId}`);
+    } else {
+      const title = encodeURIComponent(query.trim());
+      router.push(`/generator?title=${title}`);
+    }
+  };
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!search.trim()) {
+      router.push("/generator");
+      return;
+    }
+    goToTemplate(search);
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-950 to-slate-900">
       <div className="flex min-h-screen w-full flex-col gap-16 px-4 pb-20 pt-12 md:px-6 lg:px-10 lg:pt-16">
-        {/* Hero */}
+        {/* Hero with Google-like search journey */}
         <section className="grid gap-10 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:items-center">
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-xs font-medium uppercase tracking-wide text-emerald-300">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              Welcome to BingoCraft
+              Tell us your bingo idea
             </div>
             <div className="space-y-4">
               <h1 className="text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl lg:text-5xl">
-                Design{" "}
+                What{" "}
                 <span className="bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-300 bg-clip-text text-transparent">
-                  beautiful bingo cards
+                  bingo card
                 </span>{" "}
-                for any occasion.
+                do you want to create?
               </h1>
               <p className="max-w-2xl text-sm text-slate-400 sm:text-base">
-                BingoCraft lets you start from curated templates or build your
-                own cards from scratch. Perfect for parties, classrooms, team
-                meetings, and events—no design skills required.
+                Type your idea like &quot;Christmas bingo card&quot; or choose one
+                of the quick options below. We&apos;ll open a ready-made card in
+                the editor so you can tweak the squares and make it look perfect.
               </p>
             </div>
-            <div className="flex flex-wrap items-center gap-3">
-              <Button asChild>
-                <Link href="/generator">Start generating cards</Link>
-              </Button>
+
+            <form
+              onSubmit={handleSubmit}
+              className="mt-2 flex w-full max-w-xl flex-col gap-3 sm:flex-row"
+            >
+              <Input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="e.g. Christmas bingo card"
+                className="h-11 rounded-full border-slate-700 bg-slate-900/70 text-sm text-slate-50 placeholder:text-slate-500"
+              />
               <Button
-                asChild
-                className="border-slate-600 bg-slate-900/80 text-slate-50 hover:bg-slate-800"
+                type="submit"
+                className="h-11 rounded-full px-6 cursor-pointer transition-transform hover:-translate-y-0.5 active:scale-95"
               >
-                <Link href="/templates">Browse all templates</Link>
+                Generate
               </Button>
-              <p className="w-full text-xs text-muted-foreground sm:w-auto">
-                Free to use · Print or save as PDF · No signup.
-              </p>
+            </form>
+
+            <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-slate-300">
+              <span className="text-[11px] uppercase tracking-wide text-slate-500">
+                Popular:
+              </span>
+              {[
+                { label: "Christmas bingo card", query: "christmas bingo card" },
+                { label: "Team meeting bingo", query: "team meeting bingo card" },
+                { label: "Kids birthday bingo", query: "kids birthday bingo card" },
+                { label: "Classroom math bingo", query: "classroom math bingo card" },
+              ].map((pill) => (
+                <button
+                  key={pill.label}
+                  type="button"
+                  className="cursor-pointer rounded-full border border-slate-700/70 bg-slate-900/70 px-3 py-1 text-[11px] hover:border-emerald-400 hover:text-emerald-300 transition-colors"
+                  onClick={() => {
+                    setSearch(pill.query);
+                    goToTemplate(pill.query);
+                  }}
+                >
+                  {pill.label}
+                </button>
+              ))}
             </div>
+
+            <p className="text-xs text-muted-foreground">
+              Free to use · Print or save as PDF · No signup required.
+            </p>
           </div>
 
           <Card className="border border-emerald-500/30 bg-slate-900/90 shadow-emerald-500/20">

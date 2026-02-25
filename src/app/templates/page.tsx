@@ -15,6 +15,8 @@ import {
 
 const TEMPLATE_CARD_META: { id: TemplateId; badge: string }[] = [
   { id: "party-food", badge: "Most popular" },
+  { id: "numbers-1-75", badge: "Numbers" },
+  { id: "christmas", badge: "Xmas" },
   { id: "team-meeting", badge: "Remote work" },
   { id: "classroom-vocab", badge: "Teachers" },
   { id: "movie-night", badge: "Friends & family" },
