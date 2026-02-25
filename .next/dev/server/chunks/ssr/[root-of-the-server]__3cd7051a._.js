@@ -1092,7 +1092,9 @@ const TEMPLATES = [
 
 __turbopack_context__.s([
     "default",
-    ()=>GeneratorPage
+    ()=>GeneratorPage,
+    "dynamic",
+    ()=>dynamic
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
@@ -1107,6 +1109,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$bingo$2d$temp
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/utils.ts [app-ssr] (ecmascript)");
 "use client";
 ;
+const dynamic = "force-dynamic";
 ;
 ;
 ;
@@ -1157,7 +1160,7 @@ function generateBingoGrid(items, size, useFreeCenter) {
     }
     return grid;
 }
-function GeneratorPage() {
+function GeneratorPageInner() {
     const searchParams = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSearchParams"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const { data: session, status } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$auth$2f$react$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSession"])();
@@ -1293,14 +1296,14 @@ function GeneratorPage() {
                                             className: "h-1.5 w-1.5 rounded-full bg-emerald-400"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/generator/page.tsx",
-                                            lineNumber: 239,
+                                            lineNumber: 241,
                                             columnNumber: 15
                                         }, this),
                                         cardName
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/generator/page.tsx",
-                                    lineNumber: 238,
+                                    lineNumber: 240,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -1313,7 +1316,7 @@ function GeneratorPage() {
                                             children: "bingo cards"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/generator/page.tsx",
-                                            lineNumber: 244,
+                                            lineNumber: 246,
                                             columnNumber: 15
                                         }, this),
                                         " ",
@@ -1321,7 +1324,7 @@ function GeneratorPage() {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/generator/page.tsx",
-                                    lineNumber: 242,
+                                    lineNumber: 244,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1329,13 +1332,13 @@ function GeneratorPage() {
                                     children: "Start from a pre-designed template or your own list of items, choose the grid size, and instantly generate a beautiful, printable bingo card for your next game night, classroom, or event."
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/generator/page.tsx",
-                                    lineNumber: 249,
+                                    lineNumber: 251,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/generator/page.tsx",
-                            lineNumber: 237,
+                            lineNumber: 239,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1347,7 +1350,7 @@ function GeneratorPage() {
                                     children: "Download PDF"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/generator/page.tsx",
-                                    lineNumber: 257,
+                                    lineNumber: 259,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -1357,7 +1360,7 @@ function GeneratorPage() {
                                     children: justSaved ? "Saved!" : "Save card"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/generator/page.tsx",
-                                    lineNumber: 263,
+                                    lineNumber: 265,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -1366,19 +1369,19 @@ function GeneratorPage() {
                                     children: "Shuffle Card"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/generator/page.tsx",
-                                    lineNumber: 270,
+                                    lineNumber: 272,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/generator/page.tsx",
-                            lineNumber: 256,
+                            lineNumber: 258,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/generator/page.tsx",
-                    lineNumber: 236,
+                    lineNumber: 238,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1395,7 +1398,7 @@ function GeneratorPage() {
                                             children: "Card Settings"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/generator/page.tsx",
-                                            lineNumber: 287,
+                                            lineNumber: 289,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1406,13 +1409,13 @@ function GeneratorPage() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/generator/page.tsx",
-                                            lineNumber: 290,
+                                            lineNumber: 292,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/generator/page.tsx",
-                                    lineNumber: 286,
+                                    lineNumber: 288,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1427,7 +1430,7 @@ function GeneratorPage() {
                                                     children: "Bingo items"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                    lineNumber: 298,
+                                                    lineNumber: 300,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1435,7 +1438,7 @@ function GeneratorPage() {
                                                     children: "One item per line. We'll randomly place them on the card. If you provide fewer items than cells, we'll reuse them."
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                    lineNumber: 301,
+                                                    lineNumber: 303,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -1445,13 +1448,13 @@ function GeneratorPage() {
                                                     onChange: (e)=>setRawItems(e.target.value)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                    lineNumber: 305,
+                                                    lineNumber: 307,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/generator/page.tsx",
-                                            lineNumber: 297,
+                                            lineNumber: 299,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1466,7 +1469,7 @@ function GeneratorPage() {
                                                             children: "Grid size"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/generator/page.tsx",
-                                                            lineNumber: 315,
+                                                            lineNumber: 317,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -1479,12 +1482,12 @@ function GeneratorPage() {
                                                                         placeholder: "Select size"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/generator/page.tsx",
-                                                                        lineNumber: 323,
+                                                                        lineNumber: 325,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                                    lineNumber: 322,
+                                                                    lineNumber: 324,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -1502,24 +1505,24 @@ function GeneratorPage() {
                                                                             ]
                                                                         }, n, true, {
                                                                             fileName: "[project]/src/app/generator/page.tsx",
-                                                                            lineNumber: 327,
+                                                                            lineNumber: 329,
                                                                             columnNumber: 25
                                                                         }, this))
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                                    lineNumber: 325,
+                                                                    lineNumber: 327,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/generator/page.tsx",
-                                                            lineNumber: 318,
+                                                            lineNumber: 320,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                    lineNumber: 314,
+                                                    lineNumber: 316,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1530,7 +1533,7 @@ function GeneratorPage() {
                                                             children: "Center cell"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/generator/page.tsx",
-                                                            lineNumber: 336,
+                                                            lineNumber: 338,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1542,32 +1545,32 @@ function GeneratorPage() {
                                                                     onCheckedChange: (val)=>setUseFreeCenter(val === true)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                                    lineNumber: 338,
+                                                                    lineNumber: 340,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                     children: "Use FREE space on the card"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                                    lineNumber: 345,
+                                                                    lineNumber: 347,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/generator/page.tsx",
-                                                            lineNumber: 337,
+                                                            lineNumber: 339,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                    lineNumber: 335,
+                                                    lineNumber: 337,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/generator/page.tsx",
-                                            lineNumber: 313,
+                                            lineNumber: 315,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1583,7 +1586,7 @@ function GeneratorPage() {
                                                             children: items.length
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/generator/page.tsx",
-                                                            lineNumber: 353,
+                                                            lineNumber: 355,
                                                             columnNumber: 19
                                                         }, this),
                                                         " ",
@@ -1598,7 +1601,7 @@ function GeneratorPage() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/generator/page.tsx",
-                                                            lineNumber: 357,
+                                                            lineNumber: 359,
                                                             columnNumber: 19
                                                         }, this),
                                                         " ",
@@ -1606,7 +1609,7 @@ function GeneratorPage() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                    lineNumber: 351,
+                                                    lineNumber: 353,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1616,32 +1619,32 @@ function GeneratorPage() {
                                                             className: "inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/generator/page.tsx",
-                                                            lineNumber: 363,
+                                                            lineNumber: 365,
                                                             columnNumber: 19
                                                         }, this),
                                                         "Tip: Use templates as a starting point and then customize the wording."
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                    lineNumber: 362,
+                                                    lineNumber: 364,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/generator/page.tsx",
-                                            lineNumber: 350,
+                                            lineNumber: 352,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/generator/page.tsx",
-                                    lineNumber: 296,
+                                    lineNumber: 298,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/generator/page.tsx",
-                            lineNumber: 280,
+                            lineNumber: 282,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1655,7 +1658,7 @@ function GeneratorPage() {
                                             children: cardName || "Bingo"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/generator/page.tsx",
-                                            lineNumber: 374,
+                                            lineNumber: 376,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1663,20 +1666,20 @@ function GeneratorPage() {
                                             children: "Numbers or phrases for custom classroom or party bingo."
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/generator/page.tsx",
-                                            lineNumber: 377,
+                                            lineNumber: 379,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/generator/page.tsx",
-                                    lineNumber: 373,
+                                    lineNumber: 375,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "pointer-events-none absolute -inset-3 -z-10 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.2),_transparent_55%)] opacity-70 print:hidden"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/generator/page.tsx",
-                                    lineNumber: 381,
+                                    lineNumber: 383,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -1693,7 +1696,7 @@ function GeneratorPage() {
                                                             children: "Bingo"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/generator/page.tsx",
-                                                            lineNumber: 390,
+                                                            lineNumber: 392,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1701,13 +1704,13 @@ function GeneratorPage() {
                                                             children: template ? `Template: ${template.name}` : "Auto-generated from your items"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/generator/page.tsx",
-                                                            lineNumber: 393,
+                                                            lineNumber: 395,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                    lineNumber: 389,
+                                                    lineNumber: 391,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1722,26 +1725,26 @@ function GeneratorPage() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/generator/page.tsx",
-                                                            lineNumber: 400,
+                                                            lineNumber: 402,
                                                             columnNumber: 19
                                                         }, this),
                                                         useFreeCenter && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                             children: "Center: FREE"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/generator/page.tsx",
-                                                            lineNumber: 403,
+                                                            lineNumber: 405,
                                                             columnNumber: 37
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                    lineNumber: 399,
+                                                    lineNumber: 401,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/generator/page.tsx",
-                                            lineNumber: 388,
+                                            lineNumber: 390,
                                             columnNumber: 15
                                         }, this),
                                         isClient ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1756,24 +1759,24 @@ function GeneratorPage() {
                                                         children: cell.text
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/generator/page.tsx",
-                                                        lineNumber: 419,
+                                                        lineNumber: 421,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, cell.id, false, {
                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                    lineNumber: 413,
+                                                    lineNumber: 415,
                                                     columnNumber: 21
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/generator/page.tsx",
-                                            lineNumber: 408,
+                                            lineNumber: 410,
                                             columnNumber: 17
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex flex-1 items-center justify-center rounded-xl border border-dashed border-slate-700/70 bg-slate-900/60 text-[11px] text-slate-500",
                                             children: "Preparing your bingo card…"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/generator/page.tsx",
-                                            lineNumber: 424,
+                                            lineNumber: 426,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1783,26 +1786,26 @@ function GeneratorPage() {
                                                     children: generatedAt ? `Generated at ${generatedAt}` : "\u00A0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                    lineNumber: 430,
+                                                    lineNumber: 432,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     children: "Print this page to use your card"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/generator/page.tsx",
-                                                    lineNumber: 433,
+                                                    lineNumber: 435,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/generator/page.tsx",
-                                            lineNumber: 429,
+                                            lineNumber: 431,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/generator/page.tsx",
-                                    lineNumber: 382,
+                                    lineNumber: 384,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1811,35 +1814,49 @@ function GeneratorPage() {
                                         children: generatedAt ? `Generated ${generatedAt}` : ""
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/generator/page.tsx",
-                                        lineNumber: 438,
+                                        lineNumber: 440,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/generator/page.tsx",
-                                    lineNumber: 437,
+                                    lineNumber: 439,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/generator/page.tsx",
-                            lineNumber: 371,
+                            lineNumber: 373,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/generator/page.tsx",
-                    lineNumber: 279,
+                    lineNumber: 281,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/generator/page.tsx",
-            lineNumber: 235,
+            lineNumber: 237,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/generator/page.tsx",
-        lineNumber: 234,
+        lineNumber: 236,
+        columnNumber: 5
+    }, this);
+}
+function GeneratorPage() {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Suspense"], {
+        fallback: null,
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(GeneratorPageInner, {}, void 0, false, {
+            fileName: "[project]/src/app/generator/page.tsx",
+            lineNumber: 454,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/src/app/generator/page.tsx",
+        lineNumber: 453,
         columnNumber: 5
     }, this);
 }

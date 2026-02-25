@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+export const dynamic = "force-dynamic";
+
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
@@ -91,7 +93,7 @@ function generateBingoGrid(
   return grid;
 }
 
-export default function GeneratorPage() {
+function GeneratorPageInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -446,3 +448,10 @@ export default function GeneratorPage() {
   );
 }
 
+export default function GeneratorPage() {
+  return (
+    <Suspense fallback={null}>
+      <GeneratorPageInner />
+    </Suspense>
+  );
+}
