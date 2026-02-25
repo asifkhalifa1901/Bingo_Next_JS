@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 106, "column": 0}, "map": {"version":3,"sources":["file:///Users/darpandalaljava/Desktop/NextJS_Project/src/app/api/auth/%5B...nextauth%5D/route.ts"],"sourcesContent":["import NextAuth, { type NextAuthOptions } from \"next-auth\";\nimport GoogleProvider from \"next-auth/providers/google\";\n\nexport const authOptions: NextAuthOptions = {\n  providers: [\n    GoogleProvider({\n      clientId: process.env.GOOGLE_CLIENT_ID ?? \"\",\n      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? \"\",\n      authorization: {\n        params: {\n          // Always show the Google account chooser, even if the user\n          // has only one account or is already signed in.\n          prompt: \"select_account\",\n        },\n      },\n    }),\n  ],\n};\n\nconst handler = NextAuth(authOptions);\n\nexport { handler as GET, handler as POST };\n\n"],"names":[],"mappings":";;;;;;;;AAAA;AACA;;;AAEO,MAAM,cAA+B;IAC1C,WAAW;QACT,IAAA,gKAAc,EAAC;YACb,UAAU,QAAQ,GAAG,CAAC,gBAAgB,IAAI;YAC1C,cAAc,QAAQ,GAAG,CAAC,oBAAoB,IAAI;YAClD,eAAe;gBACb,QAAQ;oBACN,2DAA2D;oBAC3D,gDAAgD;oBAChD,QAAQ;gBACV;YACF;QACF;KACD;AACH;AAEA,MAAM,UAAU,IAAA,kJAAQ,EAAC"}}]
+}
