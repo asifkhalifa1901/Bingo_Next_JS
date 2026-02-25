@@ -1,8 +1,10 @@
 export type TemplateId =
   | "party-food"
+  | "numbers-1-75"
   | "team-meeting"
   | "classroom-vocab"
   | "movie-night"
+  | "christmas"
   | "holiday-party"
   | "baby-shower"
   | "wedding-shower"
@@ -31,9 +33,11 @@ export type BingoTemplate = {
 
 export const TEMPLATE_ACCENT_BY_ID: Record<TemplateId, string> = {
   "party-food": "border-emerald-500/70 shadow-emerald-500/25",
+  "numbers-1-75": "border-sky-400/70 shadow-sky-400/25",
   "team-meeting": "border-sky-500/70 shadow-sky-500/25",
   "classroom-vocab": "border-violet-500/70 shadow-violet-500/25",
   "movie-night": "border-amber-500/70 shadow-amber-500/20",
+  christmas: "border-red-500/70 shadow-red-500/25",
   "holiday-party": "border-rose-500/70 shadow-rose-500/25",
   "baby-shower": "border-lime-500/70 shadow-lime-500/25",
   "wedding-shower": "border-pink-500/70 shadow-pink-500/25",
@@ -85,6 +89,48 @@ export const TEMPLATES: BingoTemplate[] = [
       "Juice",
       "Waffles",
       "Pancakes",
+    ],
+  },
+  {
+    id: "numbers-1-75",
+    name: "Numbers 1–75",
+    description: "Classic 1–75 number bingo card, ready to play.",
+    size: 5,
+    useFreeCenter: true,
+    items: Array.from({ length: 75 }, (_, i) => String(i + 1)),
+  },
+  {
+    id: "christmas",
+    name: "Christmas Bingo",
+    description: "Christmas trees, Santa hats, carols, gifts, and cozy moments.",
+    size: 5,
+    useFreeCenter: true,
+    items: [
+      "Christmas tree",
+      "Santa hat",
+      "Wrapped gifts",
+      "Snowman",
+      "Gingerbread cookies",
+      "Jingle bells",
+      "Christmas carol",
+      "Hot cocoa",
+      "Stockings on the wall",
+      "Candy canes",
+      "Fairy lights",
+      "Christmas movie",
+      "Reindeer",
+      "Snowflakes",
+      "Wreath on the door",
+      "Family photo",
+      "Ugly Christmas sweater",
+      "Christmas dinner",
+      "Nativity scene",
+      "Christmas card",
+      "Mistletoe",
+      "Ornaments",
+      "Fireplace",
+      "Red and green decorations",
+      "Opening presents",
     ],
   },
   {

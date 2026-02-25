@@ -47,9 +47,16 @@ body {
 }
 
 @media print {
+  html,
   body {
     background: #ffffff !important;
     color: #020617 !important;
+  }
+
+  main,
+  .bg-gradient-to-br {
+    background: #ffffff !important;
+    background-image: none !important;
   }
 
   .bingo-cell {

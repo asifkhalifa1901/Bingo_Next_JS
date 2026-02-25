@@ -54,6 +54,7 @@
   :root, :host {
     --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --color-red-500: #fb2c36;
     --color-orange-500: #fe6e00;
     --color-amber-500: #f99c00;
     --color-lime-500: #80cd00;
@@ -64,6 +65,7 @@
     --color-teal-300: #46ecd5;
     --color-teal-500: #00baa7;
     --color-cyan-500: #00b7d7;
+    --color-sky-400: #00bcfe;
     --color-sky-500: #00a5ef;
     --color-blue-500: #3080ff;
     --color-indigo-500: #625fff;
@@ -121,6 +123,7 @@
 
   @supports (color: lab(0% 0 0)) {
     :root, :host {
+      --color-red-500: lab(55.4814% 75.0732 48.8528);
       --color-orange-500: lab(64.272% 57.1788 90.3583);
       --color-amber-500: lab(72.7183% 31.8672 97.9407);
       --color-lime-500: lab(75.3197% -46.6547 86.1778);
@@ -131,6 +134,7 @@
       --color-teal-300: lab(84.8977% -48.1516 -1.3321);
       --color-teal-500: lab(67.3859% -49.0983 -2.63511);
       --color-cyan-500: lab(67.805% -35.3952 -30.2018);
+      --color-sky-400: lab(70.687% -23.6078 -45.9483);
       --color-sky-500: lab(63.3038% -18.433 -51.0407);
       --color-blue-500: lab(54.1736% 13.3369 -74.6839);
       --color-indigo-500: lab(48.295% 38.3129 -81.9673);
@@ -423,6 +427,10 @@
     inset-inline-start: var(--spacing);
   }
 
+  .end {
+    inset-inline-end: var(--spacing);
+  }
+
   .right-2 {
     right: calc(var(--spacing) * 2);
   }
@@ -533,6 +541,10 @@
     height: calc(var(--spacing) * 10);
   }
 
+  .h-11 {
+    height: calc(var(--spacing) * 11);
+  }
+
   .h-\[var\(--radix-select-trigger-height\)\] {
     height: var(--radix-select-trigger-height);
   }
@@ -543,6 +555,10 @@
 
   .h-px {
     height: 1px;
+  }
+
+  .max-h-40 {
+    max-height: calc(var(--spacing) * 40);
   }
 
   .max-h-\[--radix-select-content-available-height\] {
@@ -855,6 +871,10 @@
     }
   }
 
+  .border-emerald-500 {
+    border-color: var(--color-emerald-500);
+  }
+
   .border-emerald-500\/30 {
     border-color: #00bb7f4d;
   }
@@ -963,6 +983,16 @@
     }
   }
 
+  .border-red-500\/70 {
+    border-color: #fb2c36b3;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .border-red-500\/70 {
+      border-color: color-mix(in oklab, var(--color-red-500) 70%, transparent);
+    }
+  }
+
   .border-rose-500\/70 {
     border-color: #ff2357b3;
   }
@@ -970,6 +1000,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .border-rose-500\/70 {
       border-color: color-mix(in oklab, var(--color-rose-500) 70%, transparent);
+    }
+  }
+
+  .border-sky-400\/70 {
+    border-color: #00bcfeb3;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .border-sky-400\/70 {
+      border-color: color-mix(in oklab, var(--color-sky-400) 70%, transparent);
     }
   }
 
@@ -1113,6 +1153,16 @@
     background-color: var(--color-slate-900);
   }
 
+  .bg-slate-900\/50 {
+    background-color: #0f172b80;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-slate-900\/50 {
+      background-color: color-mix(in oklab, var(--color-slate-900) 50%, transparent);
+    }
+  }
+
   .bg-slate-900\/60 {
     background-color: #0f172b99;
   }
@@ -1120,6 +1170,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .bg-slate-900\/60 {
       background-color: color-mix(in oklab, var(--color-slate-900) 60%, transparent);
+    }
+  }
+
+  .bg-slate-900\/70 {
+    background-color: #0f172bb3;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-slate-900\/70 {
+      background-color: color-mix(in oklab, var(--color-slate-900) 70%, transparent);
     }
   }
 
@@ -1242,12 +1302,24 @@
     background-clip: text;
   }
 
+  .object-contain {
+    object-fit: contain;
+  }
+
+  .object-cover {
+    object-fit: cover;
+  }
+
   .p-1 {
     padding: calc(var(--spacing) * 1);
   }
 
   .p-3 {
     padding: calc(var(--spacing) * 3);
+  }
+
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
   }
 
   .p-5 {
@@ -1280,6 +1352,10 @@
 
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
+  }
+
+  .px-6 {
+    padding-inline: calc(var(--spacing) * 6);
   }
 
   .px-8 {
@@ -1717,6 +1793,16 @@
     }
   }
 
+  .shadow-red-500\/25 {
+    --tw-shadow-color: #fb2c3640;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .shadow-red-500\/25 {
+      --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-red-500) 25%, transparent) var(--tw-shadow-alpha), transparent);
+    }
+  }
+
   .shadow-rose-500\/25 {
     --tw-shadow-color: #ff235740;
   }
@@ -1724,6 +1810,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .shadow-rose-500\/25 {
       --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-rose-500) 25%, transparent) var(--tw-shadow-alpha), transparent);
+    }
+  }
+
+  .shadow-sky-400\/25 {
+    --tw-shadow-color: #00bcfe40;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .shadow-sky-400\/25 {
+      --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-sky-400) 25%, transparent) var(--tw-shadow-alpha), transparent);
     }
   }
 
@@ -1853,6 +1949,10 @@
 
   .placeholder\:text-muted-foreground::placeholder {
     color: var(--muted-foreground);
+  }
+
+  .placeholder\:text-slate-500::placeholder {
+    color: var(--color-slate-500);
   }
 
   @media (hover: hover) {
@@ -2180,20 +2280,14 @@
   }
 
   @media (min-width: 40rem) {
-    .sm\:inline {
-      display: inline;
-    }
-  }
-
-  @media (min-width: 40rem) {
-    .sm\:w-auto {
-      width: auto;
-    }
-  }
-
-  @media (min-width: 40rem) {
     .sm\:grid-cols-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:flex-row {
+      flex-direction: row;
     }
   }
 
@@ -2258,6 +2352,12 @@
   @media (min-width: 48rem) {
     .md\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:grid-cols-\[minmax\(0\,0\.7fr\)_minmax\(0\,1fr\)\] {
+      grid-template-columns: minmax(0, .7fr) minmax(0, 1fr);
     }
   }
 
@@ -2798,8 +2898,12 @@ body {
 }
 
 @media print {
-  body {
+  html, body {
     color: #020617 !important;
+    background: #fff !important;
+  }
+
+  main, .bg-gradient-to-br {
     background: #fff !important;
   }
 

@@ -3,8 +3,7 @@
 export const dynamic = "force-dynamic";
 
 import { Suspense, useEffect, useMemo, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -22,12 +21,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  BingoTemplate,
-  TemplateId,
-  TEMPLATES,
-  TEMPLATE_ACCENT_BY_ID,
-} from "@/data/bingo-templates";
+import { Input } from "@/components/ui/input";
+import { BingoTemplate, TEMPLATES, TEMPLATE_ACCENT_BY_ID } from "@/data/bingo-templates";
 import { cn } from "@/lib/utils";
 
 type BingoCell = {
@@ -36,6 +31,14 @@ type BingoCell = {
   isFree?: boolean;
 };
 // templates imported from data module
+
+function toTitleCase(raw: string): string {
+  return raw
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((word) => word[0]?.toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+}
 
 function getTemplateById(id: string | null): BingoTemplate | null {
   if (!id) return null;
@@ -95,10 +98,13 @@ function generateBingoGrid(
 
 function GeneratorPageInner() {
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const { data: session, status } = useSession();
   const templateId = searchParams.get("template");
   const template = getTemplateById(templateId);
+  const mode = searchParams.get("mode");
+  const rangeStart = searchParams.get("start");
+  const rangeEnd = searchParams.get("end");
+  const explicitTitleRaw = searchParams.get("title");
+  const explicitTitle = explicitTitleRaw ? toTitleCase(explicitTitleRaw) : null;
 
   const [rawItems, setRawItems] = useState(
     template ? template.items.join("\n") : ""
@@ -108,35 +114,30 @@ function GeneratorPageInner() {
     template?.useFreeCenter ?? true
   );
   const [cardName, setCardName] = useState<string>(
-    template?.name ?? "Custom card"
+    explicitTitle ?? template?.name ?? "Custom card"
   );
   const [seed, setSeed] = useState(0);
   const [isClient, setIsClient] = useState(false);
   const [generatedAt, setGeneratedAt] = useState<string | null>(null);
   const [justSaved, setJustSaved] = useState(false);
+  const [cellOverrides, setCellOverrides] = useState<
+    Record<number, { kind: "text" | "image"; value: string }>
+  >({});
+  const [activeCellIndex, setActiveCellIndex] = useState<number | null>(null);
+  const [activeCellKind, setActiveCellKind] = useState<"text" | "image">("text");
+  const [activeCellValue, setActiveCellValue] = useState("");
 
   useEffect(() => {
     setIsClient(true);
     setGeneratedAt(new Date().toLocaleString());
   }, []);
 
-  // Require login to use the generator
+  // If we just came from "My cards", load the last saved card.
+  // Auth is disabled right now, so we use a shared "guest" slot.
   useEffect(() => {
     if (!isClient) return;
-    if (status === "loading") return;
-    if (!session?.user) {
-      const redirect = encodeURIComponent(
-        window.location.pathname + window.location.search
-      );
-      router.replace(`/login?redirect=${redirect}`);
-    }
-  }, [status, session?.user, router, isClient, searchParams]);
-
-  // If we just came from "My cards", load the last saved card for this user.
-  useEffect(() => {
-    if (!isClient || !session?.user?.email) return;
     if (searchParams.get("saved") !== "1") return;
-    const key = `bingocraft_last_card_${session.user.email}`;
+    const key = `bingocraft_last_card_guest`;
     const stored = localStorage.getItem(key);
     if (!stored) return;
     try {
@@ -154,17 +155,41 @@ function GeneratorPageInner() {
     } catch {
       // ignore parse errors
     }
-  }, [isClient, session?.user?.email, searchParams]);
+  }, [isClient, searchParams]);
 
   useEffect(() => {
-    if (template) {
+    if (explicitTitle) {
+      setCardName(explicitTitle);
+    } else if (template) {
       setCardName(template.name);
       setRawItems(template.items.join("\n"));
       setSize(template.size);
       setUseFreeCenter(template.useFreeCenter);
       setSeed((s) => s + 1);
+      setCellOverrides({});
+      setActiveCellIndex(null);
     }
-  }, [templateId]);
+  }, [explicitTitle, templateId]);
+
+  // If we arrived with a numeric range like "1-75", build items from that.
+  useEffect(() => {
+    if (!mode || mode !== "range") return;
+    if (!rangeStart || !rangeEnd) return;
+    const start = parseInt(rangeStart, 10);
+    const end = parseInt(rangeEnd, 10);
+    if (!Number.isFinite(start) || !Number.isFinite(end) || start >= end) return;
+
+    const numbers: string[] = [];
+    for (let n = start; n <= end; n++) {
+      numbers.push(String(n));
+    }
+    setCardName(`Numbers ${start}–${end}`);
+    setRawItems(numbers.join("\n"));
+    setUseFreeCenter(true);
+    setSeed((s) => s + 1);
+    setCellOverrides({});
+    setActiveCellIndex(null);
+  }, [mode, rangeStart, rangeEnd]);
 
   const items = useMemo(
     () =>
@@ -184,6 +209,8 @@ function GeneratorPageInner() {
   const handleShuffle = () => {
     setSeed((s) => s + 1);
     setGeneratedAt(new Date().toLocaleString());
+    setCellOverrides({});
+    setActiveCellIndex(null);
   };
 
   const handlePrint = () => {
@@ -191,11 +218,8 @@ function GeneratorPageInner() {
   };
 
   const handleSaveCard = () => {
-    if (!session?.user?.email) {
-      alert("Please log in to save cards.");
-      return;
-    }
-    const email = session.user.email;
+    // Saving to per-user storage is disabled while auth is hidden.
+    const email = "guest";
     const key = `bingocraft_cards_${email}`;
     const raw = localStorage.getItem(key);
     let existing: any[] = [];
@@ -225,6 +249,37 @@ function GeneratorPageInner() {
 
     setJustSaved(true);
     setTimeout(() => setJustSaved(false), 2000);
+  };
+
+  const handleCellClick = (index: number, cell: BingoCell) => {
+    setActiveCellIndex(index);
+    const existing = cellOverrides[index];
+    if (existing) {
+      setActiveCellKind(existing.kind);
+      setActiveCellValue(existing.value);
+    } else {
+      setActiveCellKind("text");
+      setActiveCellValue(cell.text);
+    }
+  };
+
+  const applyOverrideToCell = () => {
+    if (activeCellIndex === null) return;
+    const value = activeCellValue.trim();
+    if (!value) return;
+    setCellOverrides((prev) => ({
+      ...prev,
+      [activeCellIndex]: { kind: activeCellKind, value },
+    }));
+  };
+
+  const clearOverrideForCell = () => {
+    if (activeCellIndex === null) return;
+    setCellOverrides((prev) => {
+      const next = { ...prev };
+      delete next[activeCellIndex];
+      return next;
+    });
   };
 
   const accentClass =
@@ -296,6 +351,18 @@ function GeneratorPageInner() {
             </div>
 
             <div className="mt-4 space-y-4">
+              <div className="space-y-2">
+                <label className="field-label" htmlFor="card-title">
+                  Card title
+                </label>
+                <Input
+                  id="card-title"
+                  className="h-9 text-xs sm:text-sm"
+                  value={cardName}
+                  onChange={(e) => setCardName(e.target.value)}
+                />
+              </div>
+
               <div className="space-y-2">
                 <label className="field-label" htmlFor="items">
                   Bingo items
@@ -411,16 +478,34 @@ function GeneratorPageInner() {
                   className="grid flex-1 gap-[1px] rounded-xl border border-slate-700/70 bg-slate-900/90 p-[1px] sm:gap-[2px] sm:p-[2px]"
                   style={{ gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))` }}
                 >
-                  {grid.flat().map((cell) => (
-                    <div
-                      key={cell.id}
-                      className={`bingo-cell ${
-                        cell.isFree ? "bingo-cell-free" : ""
-                      }`}
-                    >
-                      <span className="line-clamp-3">{cell.text}</span>
-                    </div>
-                  ))}
+                  {grid.flat().map((cell, index) => {
+                    const override = cellOverrides[index];
+                    const isImage = override?.kind === "image";
+                    const displayText =
+                      !override || override.kind === "text"
+                        ? override?.value ?? cell.text
+                        : cell.text;
+                    return (
+                      <button
+                        type="button"
+                        key={cell.id}
+                        className={`bingo-cell ${
+                          cell.isFree ? "bingo-cell-free" : ""
+                        } cursor-pointer`}
+                        onClick={() => handleCellClick(index, cell)}
+                      >
+                        {isImage ? (
+                          <img
+                            src={override?.value}
+                            alt={cell.text || "Bingo image"}
+                            className="h-full w-full rounded-lg object-cover"
+                          />
+                        ) : (
+                          <span className="line-clamp-3">{displayText}</span>
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
               ) : (
                 <div className="flex flex-1 items-center justify-center rounded-xl border border-dashed border-slate-700/70 bg-slate-900/60 text-[11px] text-slate-500">
@@ -443,6 +528,109 @@ function GeneratorPageInner() {
             </div>
           </div>
         </section>
+
+        {activeCellIndex !== null && (
+          <section className="mt-4 rounded-xl border border-slate-800/70 bg-slate-950/80 p-4 text-xs text-slate-200 print:hidden">
+            <h2 className="text-sm font-semibold text-slate-50">
+              Edit selected square
+            </h2>
+            <p className="mt-1 text-[11px] text-slate-400">
+              You can turn this square into plain text or an image (by pasting an
+              image link). Click any square on the card to select it.
+            </p>
+
+            <div className="mt-3 grid gap-3 md:grid-cols-[minmax(0,0.7fr)_minmax(0,1fr)]">
+              <div className="space-y-2">
+                <label className="field-label">Content type</label>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    className={cn(
+                      "flex-1 rounded-full border px-3 py-1.5 text-[11px] transition-colors",
+                      activeCellKind === "text"
+                        ? "border-emerald-500 bg-emerald-500/10 text-emerald-200"
+                        : "border-slate-700 bg-slate-900/60 text-slate-300 hover:border-emerald-400"
+                    )}
+                    onClick={() => setActiveCellKind("text")}
+                  >
+                    Text
+                  </button>
+                  <button
+                    type="button"
+                    className={cn(
+                      "flex-1 rounded-full border px-3 py-1.5 text-[11px] transition-colors",
+                      activeCellKind === "image"
+                        ? "border-emerald-500 bg-emerald-500/10 text-emerald-200"
+                        : "border-slate-700 bg-slate-900/60 text-slate-300 hover:border-emerald-400"
+                    )}
+                    onClick={() => setActiveCellKind("image")}
+                  >
+                    Image
+                  </button>
+                </div>
+
+                {activeCellKind === "text" ? (
+                  <div className="space-y-1.5">
+                    <label className="field-label">Text for this square</label>
+                    <Textarea
+                      rows={3}
+                      className="text-xs"
+                      value={activeCellValue}
+                      onChange={(e) => setActiveCellValue(e.target.value)}
+                    />
+                  </div>
+                ) : (
+                  <div className="space-y-1.5">
+                    <label className="field-label">Image URL</label>
+                    <Input
+                      className="h-8 text-xs"
+                      placeholder="Paste an image link (https://...)"
+                      value={activeCellValue}
+                      onChange={(e) => setActiveCellValue(e.target.value)}
+                    />
+                    <p className="text-[11px] text-slate-500">
+                      For best results, use square images so they fit nicely in
+                      the grid.
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {activeCellKind === "image" && activeCellValue.trim() ? (
+                <div className="flex items-center justify-center rounded-lg border border-slate-800 bg-slate-900/70 p-3">
+                  <img
+                    src={activeCellValue}
+                    alt="Preview"
+                    className="max-h-40 w-full rounded-md object-contain"
+                  />
+                </div>
+              ) : (
+                <div className="flex items-center justify-center rounded-lg border border-dashed border-slate-800 bg-slate-900/50 p-3 text-[11px] text-slate-500">
+                  Preview will appear here.
+                </div>
+              )}
+            </div>
+
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Button
+                type="button"
+                size="sm"
+                className="cursor-pointer px-4 py-1.5 text-xs transition-transform hover:-translate-y-0.5 active:scale-95"
+                onClick={applyOverrideToCell}
+              >
+                Apply to square
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                className="cursor-pointer px-4 py-1.5 text-xs transition-transform hover:-translate-y-0.5 active:scale-95"
+                onClick={clearOverrideForCell}
+              >
+                Clear override
+              </Button>
+            </div>
+          </section>
+        )}
       </div>
     </main>
   );

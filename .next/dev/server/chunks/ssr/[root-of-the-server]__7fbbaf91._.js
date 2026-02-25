@@ -120,9 +120,11 @@ __turbopack_context__.s([
 ]);
 const TEMPLATE_ACCENT_BY_ID = {
     "party-food": "border-emerald-500/70 shadow-emerald-500/25",
+    "numbers-1-75": "border-sky-400/70 shadow-sky-400/25",
     "team-meeting": "border-sky-500/70 shadow-sky-500/25",
     "classroom-vocab": "border-violet-500/70 shadow-violet-500/25",
     "movie-night": "border-amber-500/70 shadow-amber-500/20",
+    christmas: "border-red-500/70 shadow-red-500/25",
     "holiday-party": "border-rose-500/70 shadow-rose-500/25",
     "baby-shower": "border-lime-500/70 shadow-lime-500/25",
     "wedding-shower": "border-pink-500/70 shadow-pink-500/25",
@@ -173,6 +175,50 @@ const TEMPLATES = [
             "Juice",
             "Waffles",
             "Pancakes"
+        ]
+    },
+    {
+        id: "numbers-1-75",
+        name: "Numbers 1–75",
+        description: "Classic 1–75 number bingo card, ready to play.",
+        size: 5,
+        useFreeCenter: true,
+        items: Array.from({
+            length: 75
+        }, (_, i)=>String(i + 1))
+    },
+    {
+        id: "christmas",
+        name: "Christmas Bingo",
+        description: "Christmas trees, Santa hats, carols, gifts, and cozy moments.",
+        size: 5,
+        useFreeCenter: true,
+        items: [
+            "Christmas tree",
+            "Santa hat",
+            "Wrapped gifts",
+            "Snowman",
+            "Gingerbread cookies",
+            "Jingle bells",
+            "Christmas carol",
+            "Hot cocoa",
+            "Stockings on the wall",
+            "Candy canes",
+            "Fairy lights",
+            "Christmas movie",
+            "Reindeer",
+            "Snowflakes",
+            "Wreath on the door",
+            "Family photo",
+            "Ugly Christmas sweater",
+            "Christmas dinner",
+            "Nativity scene",
+            "Christmas card",
+            "Mistletoe",
+            "Ornaments",
+            "Fireplace",
+            "Red and green decorations",
+            "Opening presents"
         ]
     },
     {
@@ -846,6 +892,14 @@ const TEMPLATE_CARD_META = [
         badge: "Most popular"
     },
     {
+        id: "numbers-1-75",
+        badge: "Numbers"
+    },
+    {
+        id: "christmas",
+        badge: "Xmas"
+    },
+    {
         id: "team-meeting",
         badge: "Remote work"
     },
@@ -936,7 +990,7 @@ function TemplatesPage() {
                             children: "Template gallery"
                         }, void 0, false, {
                             fileName: "[project]/src/app/templates/page.tsx",
-                            lineNumber: 44,
+                            lineNumber: 46,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -944,13 +998,13 @@ function TemplatesPage() {
                             children: "Pick a template that matches your event. You can always customize the text, grid size, and FREE space once you open it in the generator."
                         }, void 0, false, {
                             fileName: "[project]/src/app/templates/page.tsx",
-                            lineNumber: 47,
+                            lineNumber: 49,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/templates/page.tsx",
-                    lineNumber: 43,
+                    lineNumber: 45,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -978,7 +1032,7 @@ function TemplatesPage() {
                                                             children: tpl.name
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/templates/page.tsx",
-                                                            lineNumber: 72,
+                                                            lineNumber: 74,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -986,13 +1040,13 @@ function TemplatesPage() {
                                                             children: badge
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/templates/page.tsx",
-                                                            lineNumber: 75,
+                                                            lineNumber: 77,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/templates/page.tsx",
-                                                    lineNumber: 71,
+                                                    lineNumber: 73,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardDescription"], {
@@ -1000,13 +1054,13 @@ function TemplatesPage() {
                                                     children: tpl.description
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/templates/page.tsx",
-                                                    lineNumber: 79,
+                                                    lineNumber: 81,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/templates/page.tsx",
-                                            lineNumber: 70,
+                                            lineNumber: 72,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -1019,12 +1073,12 @@ function TemplatesPage() {
                                                             children: i === 4 && tpl.useFreeCenter ? "FREE" : item
                                                         }, i, false, {
                                                             fileName: "[project]/src/app/templates/page.tsx",
-                                                            lineNumber: 86,
+                                                            lineNumber: 88,
                                                             columnNumber: 27
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/templates/page.tsx",
-                                                    lineNumber: 84,
+                                                    lineNumber: 86,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1037,7 +1091,7 @@ function TemplatesPage() {
                                                                     className: "h-1.5 w-1.5 rounded-full bg-primary/80 group-hover:bg-primary"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/templates/page.tsx",
-                                                                    lineNumber: 100,
+                                                                    lineNumber: 102,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 tpl.size,
@@ -1047,7 +1101,7 @@ function TemplatesPage() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/templates/page.tsx",
-                                                            lineNumber: 99,
+                                                            lineNumber: 101,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1055,52 +1109,52 @@ function TemplatesPage() {
                                                             children: "Use template →"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/templates/page.tsx",
-                                                            lineNumber: 103,
+                                                            lineNumber: 105,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/templates/page.tsx",
-                                                    lineNumber: 98,
+                                                    lineNumber: 100,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/templates/page.tsx",
-                                            lineNumber: 83,
+                                            lineNumber: 85,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/templates/page.tsx",
-                                    lineNumber: 64,
+                                    lineNumber: 66,
                                     columnNumber: 19
                                 }, this)
                             }, id, false, {
                                 fileName: "[project]/src/app/templates/page.tsx",
-                                lineNumber: 63,
+                                lineNumber: 65,
                                 columnNumber: 17
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/src/app/templates/page.tsx",
-                        lineNumber: 55,
+                        lineNumber: 57,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/templates/page.tsx",
-                    lineNumber: 54,
+                    lineNumber: 56,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/templates/page.tsx",
-            lineNumber: 42,
+            lineNumber: 44,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/templates/page.tsx",
-        lineNumber: 41,
+        lineNumber: 43,
         columnNumber: 5
     }, this);
 }
