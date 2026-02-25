@@ -206,6 +206,25 @@ function GeneratorPageInner() {
     [isClient, items, size, useFreeCenter, seed]
   );
 
+  // By default, select the first square so users immediately
+  // see that squares are editable (even if the grid is empty/blank).
+  useEffect(() => {
+    if (!isClient) return;
+    if (activeCellIndex !== null) return;
+    const flat = grid.flat();
+    if (flat.length === 0) return;
+    const first = flat[0];
+    setActiveCellIndex(0);
+    const existing = cellOverrides[0];
+    if (existing) {
+      setActiveCellKind(existing.kind);
+      setActiveCellValue(existing.value);
+    } else {
+      setActiveCellKind("text");
+      setActiveCellValue(first.text ?? "");
+    }
+  }, [isClient, grid, activeCellIndex, cellOverrides]);
+
   const handleShuffle = () => {
     setSeed((s) => s + 1);
     setGeneratedAt(new Date().toLocaleString());
@@ -513,11 +532,13 @@ function GeneratorPageInner() {
                 </div>
               )}
 
-              <div className="mt-3 flex items-center justify-between text-[10px] text-muted-foreground print:hidden">
+              <div className="mt-3 flex flex-col gap-1 text-[10px] text-muted-foreground print:hidden sm:flex-row sm:items-center sm:justify-between">
                 <span>
                   {generatedAt ? `Generated at ${generatedAt}` : "\u00A0"}
                 </span>
-                <span>Print this page to use your card</span>
+                <span className="text-[10px] text-slate-400">
+                  Tip: Click any square to edit it, then use the panel below to add text or an image.
+                </span>
               </div>
             </Card>
             {/* Print-only timestamp under the card, right aligned */}

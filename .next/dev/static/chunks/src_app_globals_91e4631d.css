@@ -2292,6 +2292,18 @@
   }
 
   @media (min-width: 40rem) {
+    .sm\:items-center {
+      align-items: center;
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:justify-between {
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 40rem) {
     .sm\:gap-\[2px\] {
       gap: 2px;
     }
